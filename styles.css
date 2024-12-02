@@ -1,0 +1,35 @@
+body {
+    background-color: aquamarine;
+    display: flex;          /* Activa el modelo flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    height: 100vh;          /* Asegura que ocupe toda la altura del navegador */
+    margin: 0;              /* Elimina márgenes por defecto del navegador */
+}
+/* #principal{
+    display: flex;
+    align-content: center;
+} */
+h1{
+    color:blueviolet
+}
+form{
+    color:blueviolet
+    
+}
+input {
+    display: block; /* Sigue utilizando block para alinearlos en filas */
+    width: 100%;    /* Haz que ocupen todo el ancho disponible del contenedor */
+    max-width: 500px; /* Establece un ancho máximo para que no sean demasiado grandes */
+    min-width: 200px; /* Establece un ancho mínimo */
+    padding: 10px;    /* Agrega relleno interno para mejor estética */
+    box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+}
+select{
+    display: block; /* Sigue utilizando block para alinearlos en filas */
+    width: 100%;    /* Haz que ocupen todo el ancho disponible del contenedor */
+    max-width: 500px; /* Establece un ancho máximo para que no sean demasiado grandes */
+    min-width: 200px; /* Establece un ancho mínimo */
+    padding: 10px;    /* Agrega relleno interno para mejor estética */
+    box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+}
