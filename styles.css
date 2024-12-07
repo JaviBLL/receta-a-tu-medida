@@ -1,60 +1,44 @@
 body {
-    padding: 0;
-    margin: 0;
     background-color: rgb(177, 241, 219);
-    display: flex;          /* Activa el modelo flexbox */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;    /* Centra verticalmente */
-    height: 100vh;          /* Asegura que ocupe toda la altura del navegador */
-    margin: 0;              /* Elimina márgenes por defecto del navegador */
+    color: #8343bb;
 }
 
-h1{
-    color:#8343bb
-}
-h2{
-    color:#8343bb
-}
-form{
-    color:#8343bb
-    
-}
-input {
-    display: block; /* Sigue utilizando block para alinearlos en filas */
-    width: 100%;    /* Haz que ocupen todo el ancho disponible del contenedor */
-    max-width: 500px; /* Establece un ancho máximo para que no sean demasiado grandes */
-    min-width: 200px; /* Establece un ancho mínimo */
-    padding: 10px;    /* Agrega relleno interno para mejor estética */
-    box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
-}
-select{
-    display: block; /* Sigue utilizando block para alinearlos en filas */
-    width: 100%;    /* Haz que ocupen todo el ancho disponible del contenedor */
-    max-width: 500px; /* Establece un ancho máximo para que no sean demasiado grandes */
-    min-width: 200px; /* Establece un ancho mínimo */
-    padding: 10px;    /* Agrega relleno interno para mejor estética */
-    box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+.titulo {
+    font-size: 2.5rem;
+    color: #8343bb;
 }
 
-table{
+form input, form select {
+    margin-bottom: 10px;
+}
+
+table {
     width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-    
+    margin: 0 auto;
 }
 
-.custom-table {
-    background-color: #f0f8ff; 
-    color: #8343bb; 
+.btn {
+    margin: 5px;
 }
 
-.custom-table th {
-    background-color: #8343bb;
-    color: #fff;
+table th {
+    background-color: #8343bb !important; 
+    color: #fff !important;
 }
 
-.custom-table td {
-    border: 1px solid #ccc; 
+hr{
+    border: 1.5px solid black;
+}
+
+#costos{
+    color: black;
+    font-size: 20px;
+}
+#ganancias{
+    color: black;
+    font-size: 20px;
+}
+#costoPorPorcion{
+    color: black;
+    font-size: 20px;
 }

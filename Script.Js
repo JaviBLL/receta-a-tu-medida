@@ -1,70 +1,75 @@
 
 
-        // Función para agregar un nuevo ingrediente
-        function agregarIngrediente() {
-            const listaIngrediente = document.getElementById('listaIngrediente');
-            const ingredienteDiv = document.createElement('div');
-            ingredienteDiv.classList.add('ingrediente');
-            ingredienteDiv.innerHTML = `
-                <label for="ingresoIngrediente">Ingrediente:</label>
-                <input type="text" id="ingresoIngrediente" placeholder="Ingrediente" required>
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidadIngrediente" placeholder="Cantidad" required min="0" step="0.01">
-                <label for="unidad">Unidad:</label>
-                <select name="unidad" id="unidad">
+function agregarIngrediente() {
+    const container = document.getElementById('ingredientesContainer');
+    const ingredienteHTML = `
+        <div class="ingrediente row mb-2">
+            <div class="col-md-3">
+                <input type="text" class="form-control ingresoIngrediente" placeholder="Ingrediente" required>
+            </div>
+            <div class="col-md-2">
+                <input type="number" class="form-control cantidadIngrediente" placeholder="Cantidad" required>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select unidad">
                     <option value="Unidad">Unidad</option>
                     <option value="kilos">Kilos</option>
                     <option value="gramos">Gramos</option>
-                    <option value="miligramos">Miligramos</option>
                     <option value="litros">Litros</option>
-                    <option value="mililitros">Mililitros</option>
                 </select>
-                <button type="button" onclick="quitarIngrediente(this)">-</button>
-            `;
-            listaIngrediente.appendChild(ingredienteDiv);
-        }
+            </div>
+            <div class="col-md-3">
+                <input type="number" class="form-control precio" placeholder="Precio" required>
+            </div>
+            
+            <div class="col-md-1 text-center">
+                <button type="button" class="btn btn-danger" onclick="quitarIngrediente(this)">-</button>
+            </div>
+            
+        </div>
+    `;
+    container.insertAdjacentHTML('beforeend', ingredienteHTML);
+}
 
-        // Función para quitar un ingrediente
-        function quitarIngrediente(button) {
-            const ingredienteDiv = button.parentNode;
-            ingredienteDiv.parentNode.removeChild(ingredienteDiv);
-        }
+function quitarIngrediente(button) {
+    button.closest('.ingrediente').remove();
+}
 
-        // Función de cálculo
-        function calculo(nInicio, nFinal, medida) {
-            return (medida / nInicio) * nFinal;
-        }
+function calcularReceta() {
+    const nInicio = parseInt(document.getElementById('cantidad').value);
+    const nFinal = parseInt(document.getElementById('cantFinal').value);
+    const precioVenta = parseFloat(document.getElementById('precioVenta').value);
 
-        // Función para calcular la receta ajustada
-        function calcularReceta() {
-            const nInicio = parseInt(document.getElementById('cantidad').value);
-            const nFinal = parseInt(document.getElementById('cantFinal').value);
-            const ingredientes = document.querySelectorAll('.ingrediente');
-            const resultadosDiv = document.getElementById('resultados');
+    let costoTotal = 0;
+    const tablaResultados = document.getElementById('tablaResultados');
+    tablaResultados.innerHTML = '';
 
-            // Limpiar resultados previos
-            resultadosDiv.innerHTML = '';
+    const ingredientes = document.querySelectorAll('.ingrediente');
+    ingredientes.forEach(row => {
+        const nombre = row.querySelector('.ingresoIngrediente').value;
+        const cantidad = parseFloat(row.querySelector('.cantidadIngrediente').value);
+        const unidad = row.querySelector('.unidad').value;
+        const precio = parseFloat(row.querySelector('.precio').value);
 
-            // Validar entrada de datos
-            if (isNaN(nInicio) || isNaN(nFinal) || nInicio <= 0 || nFinal <= 0) {
-                resultadosDiv.innerHTML = '<p style="color: red;">Por favor, ingrese cantidades válidas para las personas.</p>';
-                return;
-            }
+        const cantidadAjustada = (cantidad / nInicio) * nFinal;
+        const costo = (precio / cantidad) * cantidadAjustada;
+        costoTotal += costo;
 
-            // Iterar sobre los ingredientes y calcular las nuevas cantidades
-            ingredientes.forEach(ingrediente => {
-                const nombre = ingrediente.querySelector('#ingresoIngrediente').value;
-                const cantidad = parseFloat(ingrediente.querySelector('#cantidadIngrediente').value);
-                const unidad = ingrediente.querySelector('#unidad').value;
+        tablaResultados.innerHTML += `
+            <tr>
+                <td>${nombre}</td>
+                <td>${formatearNumero(cantidadAjustada)}</td>
+                <td>${unidad}</td>
+            </tr>
+        `;
+    });
 
-                if (nombre && !isNaN(cantidad) && cantidad > 0) {
-                    const cantidadAjustada = calculo(nInicio, nFinal, cantidad);
+    document.getElementById('costos').innerText = `Costos: $${formatearNumero(costoTotal)}`;
+    const ganancia = (precioVenta * nFinal) - costoTotal;
+    document.getElementById('ganancias').innerText = `Ganancias: $${formatearNumero(ganancia)}`;
 
-                    // Mostrar resultado
-                    const resultado = document.createElement('div');
-                    resultado.classList.add('resultado-item');
-                    resultado.textContent = `${nombre}: ${cantidadAjustada.toFixed(2)} ${unidad}`;
-                    resultadosDiv.appendChild(resultado);
-                }
-            });
-        }
+    // Calcular el costo por porción
+    const costoPorPorcion = costoTotal / nFinal;
+    document.getElementById('costoPorPorcion').innerText = 
+        `Costo por porción: $${formatearNumero(costoPorPorcion)}`;
+}
