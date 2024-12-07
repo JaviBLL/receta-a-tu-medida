@@ -1,20 +1,22 @@
 body {
-    background-color: aquamarine;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(177, 241, 219);
     display: flex;          /* Activa el modelo flexbox */
     justify-content: center; /* Centra horizontalmente */
     align-items: center;    /* Centra verticalmente */
     height: 100vh;          /* Asegura que ocupe toda la altura del navegador */
     margin: 0;              /* Elimina márgenes por defecto del navegador */
 }
-/* #principal{
-    display: flex;
-    align-content: center;
-} */
+
 h1{
-    color:blueviolet
+    color:#8343bb
+}
+h2{
+    color:#8343bb
 }
 form{
-    color:blueviolet
+    color:#8343bb
     
 }
 input {
@@ -32,4 +34,27 @@ select{
     min-width: 200px; /* Establece un ancho mínimo */
     padding: 10px;    /* Agrega relleno interno para mejor estética */
     box-sizing: border-box; /* Incluye padding y borde en el cálculo del ancho */
+}
+
+table{
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    
+}
+
+.custom-table {
+    background-color: #f0f8ff; 
+    color: #8343bb; 
+}
+
+.custom-table th {
+    background-color: #8343bb;
+    color: #fff;
+}
+
+.custom-table td {
+    border: 1px solid #ccc; 
 }
