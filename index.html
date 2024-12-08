@@ -123,7 +123,9 @@
 function quitarIngrediente(button) {
     button.closest('.ingrediente').remove();
 }
-
+function formatearNumero(numero) {
+    return numero.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
+}
 function calcularReceta() {
     const nInicio = parseInt(document.getElementById('cantidad').value);
     const nFinal = parseInt(document.getElementById('cantFinal').value);
@@ -163,9 +165,7 @@ function calcularReceta() {
         `Costo por porción: $${formatearNumero(costoPorPorcion)}`;
 }
 
-function formatearNumero(numero) {
-    return numero.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
-}
+
     </script>
 </body>
 
