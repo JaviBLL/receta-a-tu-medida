@@ -90,7 +90,7 @@
     </div>
 
     <script>
-        function agregarIngrediente() {
+    function agregarIngrediente() {
     const container = document.getElementById('ingredientesContainer');
     const ingredienteHTML = `
         <div class="ingrediente row mb-2">
@@ -115,7 +115,6 @@
             <div class="col-md-1 text-center">
                 <button type="button" class="btn btn-danger" onclick="quitarIngrediente(this)">-</button>
             </div>
-            
         </div>
     `;
     container.insertAdjacentHTML('beforeend', ingredienteHTML);
@@ -162,6 +161,10 @@ function calcularReceta() {
     const costoPorPorcion = costoTotal / nFinal;
     document.getElementById('costoPorPorcion').innerText = 
         `Costo por porción: $${formatearNumero(costoPorPorcion)}`;
+}
+
+function formatearNumero(numero) {
+    return numero.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });
 }
     </script>
 </body>
